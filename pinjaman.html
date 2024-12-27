@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinjaman - SIMPINGO</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            background: linear-gradient(135deg, #004d40, #80cbc4);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 800px;
+            text-align: center;
+            animation: slideIn 1s ease-out;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #004d40;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        input, select {
+            padding: 10px;
+            font-size: 1.2rem;
+            width: 80%;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+        }
+
+        button {
+            padding: 15px 30px;
+            background-color: #00796b;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #004d40;
+        }
+
+        .loan-info {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #00796b;
+        }
+
+        .alert {
+            background-color: #f44336;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            display: none;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 20px;
+            text-align: center;
+            width: 100%;
+            color: white;
+            font-size: 0.9rem;
+            animation: fadeIn 2.5s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Ajukan Pinjaman</h1>
+    <p>Masukkan jumlah pinjaman, tenor, dan lihat perhitungan cicilan bulanan.</p>
+
+    <!-- Input Fields for Loan Amount, Tenor, and Interest Rate -->
+    <input type="text" id="loan-amount" placeholder="Jumlah Pinjaman (Rp)" oninput="validateNumber(this)" />
+    <select id="loan-tenor">
+        <option value="6">6 Bulan</option>
+        <option value="12">12 Bulan</option>
+        <option value="24">24 Bulan</option>
+    </select>
+    <button onclick="calculateLoan()">Hitung Cicilan</button>
+
+    <!-- Display Loan Information -->
+    <div class="loan-info" id="loan-info"></div>
+
+    <!-- Alert for Loan Due Date -->
+    <div id="alert" class="alert">
+        Pinjaman Anda telah jatuh tempo! Segera lakukan pembayaran.
+    </div>
+
+    <button onclick="ajukanPinjaman()">Ajukan Pinjaman</button>
+
+    <script>
+        let saldo = parseInt(localStorage.getItem('saldo')) || 0;
+        let transactionHistory = JSON.parse(localStorage.getItem('transactionHistory')) || [];
+        let loanAmount, loanTenor, loanInterestRate = 0.05; // 5% interest rate
+
+        function formatRupiah(amount) {
+            return "Rp " + amount.toLocaleString('id-ID');
+        }
+
+        function validateNumber(input) {
+            let value = input.value;
+            value = value.replace(/[^0-9\.]/g, '');
+            let parts = value.split('.');
+            if (parts.length > 2) {
+                value = parts[0] + '.' + parts[1];
+            }
+            input.value = value;
+        }
+
+        function calculateLoan() {
+            loanAmount = parseFloat(document.getElementById('loan-amount').value.replace(/[^0-9\.]/g, ''));
+            loanTenor = parseInt(document.getElementById('loan-tenor').value);
+
+            if (isNaN(loanAmount) || loanAmount <= 0) {
+                alert("Masukkan jumlah pinjaman yang valid!");
+                return;
+            }
+
+            let monthlyInterest = loanInterestRate / 12;
+            let monthlyPayment = loanAmount * (monthlyInterest * Math.pow(1 + monthlyInterest, loanTenor)) / (Math.pow(1 + monthlyInterest, loanTenor) - 1);
+            let totalPayment = monthlyPayment * loanTenor;
+
+            document.getElementById('loan-info').innerHTML = `Cicilan Bulanan: ${formatRupiah(monthlyPayment.toFixed(2))}<br>Total Pembayaran: ${formatRupiah(totalPayment.toFixed(2))}<br>Tenor: ${loanTenor} Bulan`;
+        }
+
+        function generateLoanID() {
+            return 'LN-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
+        }
+
+        function ajukanPinjaman() {
+    if (isNaN(loanAmount) || loanAmount <= 0) {
+        alert("Masukkan jumlah pinjaman yang valid!");
+        return;
+    }
+
+    if (loanAmount > saldo) {
+        alert("Pinjaman yang diajukan melebihi saldo Anda!");
+        return;
+    }
+
+    saldo += loanAmount;
+
+    const loanID = generateLoanID();
+    const dueDate = new Date();
+    dueDate.setMonth(dueDate.getMonth() + loanTenor);
+
+    const transaction = {
+        id: loanID,
+        date: new Date().toLocaleDateString(),
+        description: `Pinjaman Diterima`,
+        amount: loanAmount,
+        type: 'Pinjaman',
+        dueDate: dueDate.toISOString()
+    };
+    transactionHistory.push(transaction);
+
+    localStorage.setItem('saldo', saldo);
+    localStorage.setItem('transactionHistory', JSON.stringify(transactionHistory));
+
+    alert(`Pinjaman berhasil diajukan! ID Pinjaman Anda: ${loanID}`);
+    window.location.href = 'simpanan.html'; // Redirect ke halaman simpanan
+}
+
+
+        const transaction = {
+    id: loanID, // ID Pinjaman
+    date: new Date().toLocaleDateString(),
+    description: `Pinjaman Diterima`,
+    amount: loanAmount,
+    type: 'Pinjaman',
+    dueDate: dueDate.toISOString()
+};
+transactionHistory.push(transaction);
+
+localStorage.setItem('transactionHistory', JSON.stringify(transactionHistory));
+
+        function checkLoanDueDate() {
+            const transactionHistory = JSON.parse(localStorage.getItem('transactionHistory')) || [];
+            const latestLoan = transactionHistory.filter(tx => tx.type === 'Pinjaman').pop();
+
+            if (latestLoan) {
+                const dueDate = new Date(latestLoan.dueDate);
+                const currentDate = new Date();
+                if (currentDate > dueDate) {
+                    document.getElementById('alert').style.display = 'block';
+                }
+            }
+        }
+
+        
+        checkLoanDueDate();
+    </script>
+</div>
+
+
+</body>
+</html>

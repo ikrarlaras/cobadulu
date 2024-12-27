@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simpingo - Sistem Simpan Pinjam</title>
+    <style>
+ /* Global styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;  /* Menghapus margin default pada body */
+    padding: 0; /* Menghapus padding default pada body */
+    background-color: #004d40; /* Menggunakan warna solid tanpa gradasi */
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;  /* Mengubah align-items menjadi flex-start untuk menempatkan konten di atas */
+    height: 100vh;  /* Memastikan tinggi halaman penuh */
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    background-color: rgba(255, 255, 255, 0.1); /* Gradasi transparan */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: none; /* Menghilangkan box-shadow besar */
+    animation: fadeIn 1.5s ease-in-out;
+    margin-top: 20px; /* Memberikan sedikit ruang di atas kontainer */
+}
+
+/* Header */
+header h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    animation: slideIn 1s ease-out;
+}
+
+header p {
+    text-align: center;
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: fadeInText 2s ease-in-out 0.5s forwards;
+}
+
+/* Call to Action Button */
+.cta {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.cta button {
+    padding: 12px 25px;
+    background-color: #00796b;
+    color: white;
+    border: none; /* Menghilangkan border */
+    outline: none; /* Menghilangkan outline */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background-color 0.3s;
+    box-shadow: none; /* Menghilangkan box-shadow besar */
+}
+
+.cta button:hover {
+    background-color: #004d40;
+}
+
+/* Features Section */
+.features {
+    margin-top: 40px;
+}
+
+.features h2 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+    animation: slideIn 1s ease-out 0.5s;
+}
+
+.features ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: left;
+    margin: 0;
+    font-size: 1.1em;
+}
+
+.features li {
+    margin: 20px 0;
+    opacity: 0;
+    animation: fadeInText 2s ease-in-out 1s forwards;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+form label {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+form input {
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none; /* Menghilangkan outline */
+    box-shadow: none; /* Menghilangkan box-shadow besar */
+}
+
+form input:focus {
+    border-color: #00796b; /* Mengubah warna border saat fokus */
+}
+
+form button {
+    padding: 14px;
+    background-color: #00796b;
+    color: white;
+    border: none; /* Menghilangkan border */
+    outline: none; /* Menghilangkan outline */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.3em;
+    transition: background-color 0.3s;
+    box-shadow: none; /* Menghilangkan box-shadow besar */
+}
+
+form button:hover {
+    background-color: #004d40;
+}
+
+/* Link Styles */
+a {
+    color: #80cbc4;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    0% { transform: translateX(-50%); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeInText {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Selamat Datang di Simpingo</h1>
+            <p>Dengan Simpingo, kamu bisa melakukan transaksi simpan pinjam secara cepat, mudah, dan aman. Kami menyediakan platform yang dirancang khusus untuk memudahkan kamu dalam mengelola keuangan pribadi dengan cara yang lebih efisien. Untuk bisa menikmati semua fitur yang kami tawarkan, kamu perlu bergabung terlebih dahulu. Daftarkan dirimu sekarang dan nikmati berbagai kemudahan yang ada!</p>
+        </header>
+
+        <div class="cta">
+            <button onclick="window.location.href='daftar.html'">Bergabung Sekarang</button>
+        </div>
+        <div class="login-link">
+           <center><p>Sudah punya akun? <a href="login.html">Masuk</a></p></center> 
+        </div>
+
+        <div class="features">
+            <h2>Fitur Unggulan Simpingo:</h2>
+            <ul>
+                <li><strong>Proses Simpan Pinjam Cepat dan Mudah:</strong> Dengan Simpingo, kamu bisa melakukan simpan pinjam dengan proses yang sangat cepat. Tidak perlu antri di bank, cukup dengan beberapa klik, transaksi bisa langsung dilakukan!</li>
+                <li><strong>Riwayat Transaksi Lengkap:</strong> Kami menyediakan fitur riwayat transaksi yang memudahkan kamu untuk melacak semua aktivitas simpan pinjam yang telah dilakukan. Kamu bisa memeriksa setiap detail transaksi kapan saja dan di mana saja.</li>
+                <li><strong>Keamanan Terjamin:</strong> Keamanan data dan transaksi kamu adalah prioritas utama kami. Kami menggunakan teknologi enkripsi terbaru untuk memastikan informasi pribadi kamu tetap aman dan terlindungi.</li>
+                <li><strong>Proses Pencairan Dana yang Cepat:</strong> Setelah melakukan pinjaman, pencairan dana bisa dilakukan dalam waktu yang sangat singkat. Kami bekerja sama dengan berbagai lembaga keuangan terpercaya untuk memastikan dana sampai ke tangan kamu dengan cepat.</li>
+                <li><strong>Fitur Pengingat Pembayaran:</strong> Kami tahu bahwa mengingat jadwal pembayaran bisa jadi sulit. Oleh karena itu, kami menyediakan fitur pengingat otomatis yang akan mengingatkan kamu sebelum jatuh tempo pembayaran.</li>
+                <li><strong>Diskon dan Promo Khusus:</strong> Sebagai pengguna Simpingo, kamu juga berkesempatan untuk mendapatkan diskon dan promo menarik yang hanya tersedia untuk anggota terdaftar.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarik Simpanan - SIMPINGO</title>
+    <style>
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            background: linear-gradient(135deg, #004d40, #80cbc4);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 800px;
+            text-align: center;
+            animation: slideIn 1s ease-out;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #004d40;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 1.2rem;
+            width: 80%;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+        }
+
+        button {
+            padding: 15px 30px;
+            background-color: #00796b;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 80%;
+        }
+
+        button:hover {
+            background-color: #004d40;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 20px;
+            text-align: center;
+            width: 100%;
+            color: white;
+            font-size: 0.9rem;
+            animation: fadeIn 2.5s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .balance {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #004d40;
+            margin-top: 20px;
+        }
+
+        .balance span {
+            color: #00796b;
+        }
+
+        .error {
+            color: red;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Tarik Simpanan</h1>
+    <p>Masukkan jumlah yang ingin Anda tarik:</p>
+
+    <input type="number" id="jumlahTarik" placeholder="Jumlah Tarikan" min="1" required>
+    <button onclick="tarikSimpanan()">Tarik</button>
+
+    <!-- Error message -->
+    <div id="error-message" class="error"></div>
+
+    <div class="balance">
+        <p>Saldo Anda: <strong id="saldo">Rp 0</strong></p>
+    </div>
+</div>
+
+<script>
+    // Fungsi untuk memperbarui saldo yang ditampilkan
+    function updateSaldo() {
+        let saldo = parseInt(localStorage.getItem('saldo')) || 0;
+        document.getElementById('saldo').textContent = 'Rp ' + saldo.toLocaleString('id-ID');
+    }
+
+    // Panggil fungsi untuk memperbarui saldo saat halaman dimuat
+    updateSaldo();
+
+    function tarikSimpanan() {
+        const jumlahTarik = parseInt(document.getElementById('jumlahTarik').value);
+        const errorMessage = document.getElementById('error-message');
+
+        // Validasi input
+        if (isNaN(jumlahTarik) || jumlahTarik <= 0) {
+            errorMessage.textContent = "Masukkan jumlah yang valid (lebih dari Rp 0).";
+            return;
+        } else {
+            errorMessage.textContent = ""; // Hapus pesan error jika input valid
+        }
+
+        // Ambil saldo dari localStorage
+        let saldo = parseInt(localStorage.getItem('saldo')) || 0;
+
+        if (jumlahTarik > saldo) {
+            alert("Saldo tidak cukup untuk penarikan.");
+            return;
+        }
+
+        // Kurangi saldo
+        saldo -= jumlahTarik;
+
+        // Simpan saldo yang sudah diperbarui ke localStorage
+        localStorage.setItem('saldo', saldo);
+
+        // Update saldo yang ditampilkan
+        updateSaldo();
+
+        // Kembali ke halaman Simpanan
+        alert("Penarikan berhasil!");
+        window.location.href = 'simpanan.html'; // Redirect ke halaman simpanan
+    }
+</script>
+
+
+</body>
+</html>

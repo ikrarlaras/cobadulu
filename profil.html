@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Aplikasi Simpan Pinjam</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+   body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff; 
+  color: #333;
+  animation: fadeIn 1s ease-out;
+}
+
+
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    transition: transform 0.3s, background-color 0.3s;
+    color: #333;
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+}
+
+h1, h2, p {
+    color: #004d40;
+    opacity: 0;
+    animation: slideUp 1s ease-out forwards;
+}
+
+h2 {
+    animation-delay: 0.5s;
+}
+
+p {
+    animation-delay: 1s;
+}
+h1, h2, p, ul, .footer {
+  margin: 20px auto;
+  padding: 0;
+  max-width: 800px;
+
+}
+
+
+ul li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 25px;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+ul li::before {
+    content: '\f00c';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    color: #28a745;
+}
+
+ul li:nth-child(odd) {
+    animation-delay: 1.5s;
+}
+
+ul li:nth-child(even) {
+    animation-delay: 2s;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.button:hover {
+    background-color: #218838;
+    transform: scale(1.1);
+}
+
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    color: #777;
+}
+
+.footer p {
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 2.5s;
+}
+
+/* Animasi */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+
+    .button {
+        font-size: 0.9em;
+        padding: 8px 16px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <center><h1>Profil Aplikasi Simpan Pinjam</h1></center>
+        <h2>Tentang Aplikasi</h2>
+        <p>Aplikasi Simpan Pinjam adalah solusi digital yang dirancang untuk memudahkan pengguna dalam mengelola keuangan pribadi dan melakukan transaksi pinjam-meminjam dengan aman dan efisien. Dengan antarmuka yang user-friendly, aplikasi ini cocok untuk semua kalangan, baik individu maupun kelompok, yang ingin mengatur keuangan mereka dengan lebih baik.</p>
+
+        <h2>Fitur Utama</h2>
+        <ul>
+            <li><strong>Pendaftaran dan Verifikasi Akun:</strong> Proses pendaftaran yang mudah dan cepat.</li>
+            <li><strong>Simpan Uang:</strong> Fasilitas untuk menyimpan uang secara digital dengan bunga yang kompetitif.</li>
+            <li><strong>Pinjaman:</strong> Pengguna dapat mengajukan pinjaman dengan proses yang cepat dan transparan.</li>
+            <li><strong>Manajemen Keuangan:</strong> Fitur pencatatan pengeluaran dan pemasukan untuk membantu pengguna mengelola keuangan.</li>
+            <li><strong>Keamanan Data:</strong> Enkripsi data untuk melindungi informasi pribadi pengguna.</li>
+            <li><strong>Notifikasi dan Pengingat:</strong> Pengingat jatuh tempo pinjaman dan simpanan untuk membantu pengguna mengatur keuangan.</li>
+        </ul>
+
+        <h2>Keunggulan Aplikasi</h2>
+        <ul>
+            <li>Mudah digunakan dengan antarmuka yang intuitif.</li>
+            <li>Transparansi informasi mengenai suku bunga dan biaya.</li>
+            <li>Akses 24/7 dari mana saja.</li>
+            <li>Dukungan pelanggan yang responsif.</li>
+        </ul>
+
+        <h2>Siapa yang Cocok Menggunakan Aplikasi Ini?</h2>
+        <p>Aplikasi Simpan Pinjam cocok untuk individu, keluarga, dan usaha kecil yang ingin mengelola keuangan dengan lebih efisien.</p>
+
+        <h2>Info Kontak</h2>
+        <div class="contact-info">
+            <p><strong>Email:</strong> support@simpanpinjam.com</p>
+            <p><strong>Telepon:</strong> +62 812 3456 7890</p>
+            <p><strong>Alamat:</strong> Jl. Merdeka No. 123, Jakarta, Indonesia</p>
+            <div class="social-icons">
+                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        
+        <h2>Kesimpulan</h2>
+        <p>Aplikasi Simpan Pinjam adalah pilihan tepat bagi siapa saja yang ingin mengelola keuangan dengan lebih baik. Bergabunglah dengan kami dan nikmati kemudahan dalam mengatur keuangan Anda!</p>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Simpan Pinjam</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #004d40;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideInHeader 1s ease-out;
+            flex-wrap: wrap;
+        }
+
+        .header .logo {
+            display: flex;
+            align-items: center;
+            animation: fadeInLogo 1s ease-out;
+        }
+
+        .header .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .hero img {
+  max-width: 100%; /* Maksimal 20% lebar layar */
+  height: auto;
+  margin: 20px auto;
+}
+
+
+
+        .header .logo span {
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 20px;
+            animation: fadeInNav 1s ease-out 0.5s;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            transition: color 0.3s, transform 0.3s;
+            position: relative;
+        }
+
+        .nav a:hover {
+            color: #80cbc4;
+            transform: scale(1.1);
+        }
+
+        .nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: #80cbc4;
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+
+        .nav a:hover::after {
+            width: 100%;
+        }
+
+        .header .cta-button {
+            padding: 8px 16px;
+            background-color: #80cbc4;
+            color: #004d40;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            animation: fadeInButton 1s ease-out 0.8s;
+            margin-top: 10px;
+        }
+
+        .header .cta-button:hover {
+            background-color: #004d40;
+            color: white;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(to bottom, #004d40, #80cbc4);
+            color: white;
+            animation: fadeInHero 1.5s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            animation: fadeInText 1.5s ease-out 0.5s;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            animation: fadeInText 1.5s ease-out 0.8s;
+        }
+
+        .hero .cta-button {
+            font-size: 18px;
+            padding: 10px 20px;
+            animation: fadeInButton 1.5s ease-out 1s;
+        }
+
+        .cta-button a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .cta-button a:focus {
+            outline: none;
+        }
+
+        @keyframes slideInHeader {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInLogo {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInNav {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInButton {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInHero {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .header .logo {
+                margin-bottom: 10px;
+            }
+
+            .nav {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .hero .cta-button {
+                font-size: 16px;
+                padding: 8px 16px;
+            }
+
+            .cta-button a {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 24px;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            .hero .cta-button {
+                font-size: 14px;
+                padding: 6px 12px;
+            }
+
+            .cta-button a {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="logosimpin.png" alt="Logo Aplikasi">
+            <span>SIMPINGO</span>
+        </div>
+        <nav class="nav">
+            <a href="beranda.html">Beranda</a>
+            <a href="profil.html">Profil</a>
+            <a href="transaksi.html">Transaksi</a>
+            <a href="login.html">Login</a>
+        </nav>
+        <button class="cta-button">
+            <a href="daftar.html">Daftar Sekarang</a>
+        </button>
+    </header>
+
+    <section class="hero">
+        <img src="logosimpin.png" alt="Logo Aplikasi">
+        <h1>Selamat Datang di Aplikasi Simpan Pinjam</h1>
+        <p>Solusi keuangan terpercaya untuk masa depan yang lebih cerah.</p>
+        <button class="cta-button">
+            <a href="mulai.html">Mulai Sekarang </a>
+        </button>
+    </section>
+</body>
+</html>

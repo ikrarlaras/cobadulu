@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Transaksi - SIMPINGO</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            background: linear-gradient(135deg, #004d40, #80cbc4);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 800px;
+            text-align: center;
+            animation: slideIn 1s ease-out;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #004d40;
+            margin-bottom: 20px;
+        }
+
+        .transaction-history {
+            margin-top: 30px;
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .transaction-history table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .transaction-history th, .transaction-history td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .transaction-history th {
+            background-color: #00796b;
+            color: white;
+        }
+
+        .transaction-history tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .transaction-history tr:hover {
+            background-color: #e0f2f1;
+            cursor: pointer;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #00796b;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #004d40;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 20px;
+            text-align: center;
+            width: 100%;
+            color: white;
+            font-size: 0.9rem;
+            animation: fadeIn 2.5s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+  .container {
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  h1 {
+    font-size: 1.8rem;
+  }
+  .transaction-history table {
+    font-size: 0.9rem;
+  }
+  .transaction-history th, .transaction-history td {
+    padding: 8px;
+  }
+  button {
+    padding: 8px 15px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+  .transaction-history table {
+    font-size: 0.8rem;
+  }
+  .transaction-history th, .transaction-history td {
+    padding: 5px;
+  }
+  button {
+    padding: 5px 10px;
+    font-size: 0.9rem;
+  }
+}
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Riwayat Transaksi</h1>
+    
+    <!-- Tabel Riwayat Transaksi -->
+    <div class="transaction-history">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID Pinjaman</th>
+                    <th>Tanggal</th>
+                    <th>Deskripsi</th>
+                    <th>Jumlah</th>
+                    <th>Jenis</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="transaction-table">
+                <!-- Riwayat transaksi akan ditampilkan di sini -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Tombol untuk mereset riwayat transaksi -->
+    <button onclick="resetTransactionHistory()">Reset Riwayat Transaksi</button>
+</div>
+
+<script>
+    // Ambil riwayat transaksi dari localStorage
+    let transactionHistory = JSON.parse(localStorage.getItem('transactionHistory')) || [];
+
+    // Fungsi untuk memperbarui tabel riwayat transaksi
+    function updateTransactionTable() {
+    const tableBody = document.getElementById('transaction-table');
+    tableBody.innerHTML = ''; // Clear table
+
+    const transactionHistory = JSON.parse(localStorage.getItem('transactionHistory')) || [];
+
+    transactionHistory.forEach(transaction => {
+        const row = tableBody.insertRow();
+        row.insertCell(0).textContent = transaction.id || '-'; // ID Pinjaman
+        row.insertCell(1).textContent = transaction.date;
+        row.insertCell(2).textContent = transaction.description;
+        row.insertCell(3).textContent = 'Rp ' + transaction.amount.toLocaleString();
+        row.insertCell(4).textContent = transaction.type;
+        row.insertCell(5).textContent = transaction.amount === 0 ? 'Lunas' : 'Belum Lunas'; // Status
+    });
+}
+
+
+    // Fungsi untuk mereset riwayat transaksi
+    function resetTransactionHistory() {
+        // Hapus data riwayat transaksi di localStorage
+        localStorage.removeItem('transactionHistory');
+        
+        // Reset array riwayat transaksi
+        transactionHistory = [];
+        
+        // Perbarui tampilan tabel
+        updateTransactionTable();
+        
+        alert("Riwayat transaksi telah direset.");
+    }
+
+    // Panggil fungsi untuk memperbarui tabel saat halaman dimuat
+    updateTransactionTable();
+</script>
+
+</body>
+</html>

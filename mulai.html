@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SimpinGo adalah aplikasi simpan pinjam online yang aman dan mudah digunakan.">
+  <title>Aplikasi Simpan Pinjam</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      color: #333;
+      animation: fadeInBody 1.5s ease-out;
+    }
+
+    @keyframes fadeInBody {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .header {
+      background-color: #004d40;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      animation: slideInHeader 1s ease-out;
+    }
+
+    @keyframes slideInHeader {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .logo img {
+      max-width: 150px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      animation: fadeInLogo 1s ease-out 0.5s;
+    }
+
+    @keyframes fadeInLogo {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .hero {
+      background: linear-gradient(to bottom, #004d40, #80cbc4);
+      color: white;
+      padding: 50px 20px;
+      text-align: center;
+      animation: fadeInHero 1.5s ease-out;
+    }
+
+    @keyframes fadeInHero {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      animation: fadeInText 1.5s ease-out 0.5s;
+    }
+
+    .hero p {
+      font-size: 1.2em;
+      margin: 0;
+      animation: fadeInText 1.5s ease-out 0.8s;
+    }
+
+    @keyframes fadeInText {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .section {
+      background-color: white;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 800px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      animation: fadeInSection 1.5s ease-out;
+    }
+
+    @keyframes fadeInSection {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .section h2 {
+      color: #004d40;
+      margin-top: 0;
+      animation: fadeInText 1.5s ease-out 1s;
+    }
+
+    .section ul, .section ol {
+      padding-left: 20px;
+    }
+
+    .daftar-btn {
+      display: inline-block;
+      background-color: #80cbc4;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 1em;
+      animation: fadeInButton 1.5s ease-out 1.2s;
+    }
+
+    @keyframes fadeInButton {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .daftar-btn:hover {
+      background-color: #004d40;
+    }
+
+    .footer {
+      background-color: #004d40;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      margin-top: 20px;
+      animation: fadeInFooter 1.5s ease-out 1.5s;
+    }
+
+    @keyframes fadeInFooter {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding: 30px 10px;
+      }
+
+      .daftar-btn {
+        font-size: 0.9em;
+        padding: 8px 16px;
+      }
+    }
+    
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <img src="logosimpin.png" alt="Logo Aplikasi SimpinGo">
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>Selamat Datang di Aplikasi Simpan Pinjam</h1>
+    <p>Solusi keuangan terpercaya untuk masa depan yang lebih cerah.</p>
+  </section>
+
+  <section class="section pengenalan">
+    <h2>Apa itu SimpinGo?</h2>
+    <p>SimpinGo adalah aplikasi simpan pinjam online yang aman dan mudah digunakan.</p>
+    <ul>
+      <li>Pinjam uang dengan bunga rendah</li>
+      <li>Simpan uang dengan bunga tinggi</li>
+      <li>Proses cepat dan mudah</li>
+    </ul>
+  </section>
+
+  <section class="section langkah-langkah">
+    <h2>Langkah-Langkah Mendaftar</h2>
+    <ol>
+      <li>Isi formulir pendaftaran</li>
+      <li>Unggah dokumen yang diperlukan</li>
+      <li>Tunggu proses verifikasi</li>
+      <li>Mulai menggunakan aplikasi</li>
+    </ol>
+  </section>
+
+  <section class="section formulir">
+    <h2>Daftar Sekarang</h2>
+    <a href="daftar.html" class="daftar-btn">Daftar Sekarang</a>
+  </section>
+
+  
+</body>
+</html>

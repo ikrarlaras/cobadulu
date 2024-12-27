@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lupa Password</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #004d40;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .forgot-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .forgot-container h2 {
+            margin-bottom: 20px;
+            color: #004d40;
+            font-size: 2rem;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .input-field:focus {
+            border-color: #004d40;
+            box-shadow: 0 0 8px rgba(0, 77, 64, 0.5);
+        }
+
+        .reset-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #004d40;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .reset-btn:hover {
+            background-color: #00796b;
+            transform: scale(1.05);
+        }
+
+        .back-to-login {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #004d40;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .back-to-login:hover {
+            color: #00796b;
+        }
+    </style>
+</head>
+<body>
+
+<div class="forgot-container">
+    <h2>Lupa Password</h2>
+    <p>Masukkan email kamu untuk menerima instruksi reset password.</p>
+    <form action="#" method="POST">
+        <input type="email" name="email" class="input-field" placeholder="Masukkan email kamu" required>
+        <button type="submit" class="reset-btn">Kirim</button>
+    </form>
+    <a href="login.html" class="back-to-login">Kembali ke Login</a>
+</div>
+
+</body>
+</html>

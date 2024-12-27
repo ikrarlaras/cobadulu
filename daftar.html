@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulir Pendaftaran - SimpinGo</title>
+  <style>
+    /* Resetting default styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to right, #80cbc4, #004d40);
+      color: #333;
+      padding: 0;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      text-align: center;
+      color: #004d40;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .header img {
+      max-width: 100px;
+      margin-bottom: 10px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #004d40;
+    }
+
+    input, select, button {
+      margin-top: 5px;
+      padding: 12px;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    input:focus, select:focus {
+      border-color: #004d40;
+      outline: none;
+      box-shadow: 0 0 8px rgba(0, 77, 64, 0.5);
+    }
+
+    .password-container {
+      position: relative;
+    }
+
+    .toggle-password {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #004d40;
+    }
+
+    button {
+      background-color: #004d40;
+      color: white;
+      cursor: pointer;
+      margin-top: 20px;
+      font-size: 1.1em;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #80cbc4;
+      transform: scale(1.05);
+    }
+
+    .error {
+      color: red;
+      font-size: 0.9em;
+      margin-top: 5px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+      .container {
+        padding: 15px;
+      }
+
+      h1 {
+        font-size: 1.5em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="logosimpin.png" alt="Logo SimpinGo">
+    </div>
+    <h1>Formulir Pendaftaran</h1>
+    <form action="login.html" onsubmit="return validateForm()">
+      <label for="nama">Nama Lengkap</label>
+      <input type="text" id="nama" name="nama" placeholder="Masukkan nama lengkap Anda" required>
+      <div id="namaError" class="error"></div>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Masukkan email Anda" required>
+      <div id="emailError" class="error"></div>
+
+      <label for="password">Kata Sandi</label>
+      <div class="password-container">
+        <input type="password" id="password" name="password" placeholder="Masukkan kata sandi" required>
+        <span class="toggle-password" onclick="togglePassword('password')">&#128065;</span>
+      </div>
+      <div id="passwordError" class="error"></div>
+
+      <label for="confirmPassword">Konfirmasi Kata Sandi</label>
+      <div class="password-container">
+        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Konfirmasi kata sandi" required>
+        <span class="toggle-password" onclick="togglePassword('confirmPassword')">&#128065;</span>
+      </div>
+      <div id="confirmPasswordError" class="error"></div>
+
+      <label for="telepon">Nomor Telepon</label>
+      <input type="tel" id="telepon" name="telepon" pattern="[0-9]{10,15}" placeholder="Masukkan nomor telepon" required>
+      <div id="teleponError" class="error"></div>
+
+      <label for="tanggalLahir">Tanggal Lahir</label>
+      <input type="date" id="tanggalLahir" name="tanggalLahir" required>
+      <div id="tanggalLahirError" class="error"></div>
+
+      <label for="jenisKelamin">Jenis Kelamin</label>
+      <div>
+        <input type="radio" id="pria" name="jenisKelamin" value="Pria" required>
+        <label for="pria">Pria</label>
+        <input type="radio" id="wanita" name="jenisKelamin" value="Wanita">
+        <label for="wanita">Wanita</label>
+      </div>
+      <div id="jenisKelaminError" class="error"></div>
+
+      <label for="alamat">Alamat</label>
+      <input type="text" id="alamat" name="alamat" placeholder="Masukkan alamat Anda" required>
+      <div id="alamatError" class="error"></div>
+
+      <label for="pekerjaan">Pekerjaan</label>
+      <select id="pekerjaan" name="pekerjaan" required>
+        <option value="">-- Pilih Pekerjaan --</option>
+        <option value="Karyawan">Karyawan</option>
+        <option value="Wirausaha">Wirausaha</option>
+        <option value="Pelajar">Pelajar</option>
+        <option value="Lainnya">Lainnya</option>
+      </select>
+      <div id="pekerjaanError" class="error"></div>
+
+      <label>
+        <input type="checkbox" id="syarat" name="syarat" required>
+        Saya menyetujui <a href="syarat.html">syarat dan ketentuan</a>
+      </label>
+      <div id="syaratError" class="error"></div>
+
+      <button type="submit">Daftar</button>
+    </form>
+  </div>
+
+  <script>
+    function togglePassword(fieldId) {
+      const field = document.getElementById(fieldId);
+      const toggleIcon = field.nextElementSibling;
+      if (field.type === "password") {
+        field.type = "text";
+        toggleIcon.textContent = "🙈";
+      } else {
+        field.type = "password";
+        toggleIcon.textContent = "👁️";
+      }
+    }
+
+    function validateForm() {
+      let isValid = true;
+
+      // Reset errors
+      document.querySelectorAll('.error').forEach(el => el.textContent = '');
+
+      // Nama
+      const nama = document.getElementById('nama');
+      if (!nama.value.trim()) {
+        document.getElementById('namaError').textContent = 'Nama lengkap harus diisi.';
+        isValid = false;
+      }
+
+      // Email
+      const email = document.getElementById('email');
+      if (!email.value.trim()) {
+        document.getElementById('emailError').textContent = 'Email harus diisi.';
+        isValid = false;
+      }
+
+      // Password
+      const password = document.getElementById('password');
+      const confirmPassword = document.getElementById('confirmPassword');
+      if (!password.value.trim()) {
+        document.getElementById('passwordError').textContent = 'Kata sandi harus diisi.';
+        isValid = false;
+      } else if (password.value !== confirmPassword.value) {
+        document.getElementById('confirmPasswordError').textContent = 'Konfirmasi kata sandi tidak cocok.';
+        isValid = false;
+      }
+
+      // Telepon
+      const telepon = document.getElementById('telepon');
+      if (!telepon.value.trim()) {
+        document.getElementById('teleponError').textContent = 'Nomor telepon harus diisi.';
+        isValid = false;
+      }
+
+      // Tanggal Lahir
+      const tanggalLahir = document.getElementById('tanggalLahir');
+      if (!tanggalLahir.value) {
+        document.getElementById('tanggalLahirError').textContent = 'Tanggal lahir harus diisi.';
+        isValid = false;
+      }
+
+      // Jenis Kelamin
+      const jenisKelamin = document.querySelector('input[name="jenisKelamin"]:checked');
+      if (!jenisKelamin) {
+        document.getElementById('jenisKelaminError').textContent = 'Jenis kelamin harus dipilih.';
+        isValid = false;
+      }
+
+      // Alamat
+      const alamat = document.getElementById('alamat');
+      if (!alamat.value.trim()) {
+        document.getElementById('alamatError').textContent = 'Alamat harus diisi.';
+        isValid = false;
+      }
+
+      // Pekerjaan
+      const pekerjaan = document.getElementById('pekerjaan');
+      if (!pekerjaan.value) {
+        document.getElementById('pekerjaanError').textContent = 'Pekerjaan harus dipilih.';
+        isValid = false;
+      }
+
+      // Syarat dan Ketentuan
+      const syarat = document.getElementById('syarat');
+      if (!syarat.checked) {
+        document.getElementById('syaratError').textContent = 'Anda harus menyetujui syarat dan ketentuan.';
+        isValid = false;
+      }
+
+      if (isValid) {
+        // Simpan data pengguna ke localStorage
+        const userData = {
+          nama: nama.value,
+          email: email.value,
+          password: password.value,
+          telepon: telepon.value,
+          tanggalLahir: tanggalLahir.value,
+          jenisKelamin: jenisKelamin.value,
+          alamat: alamat.value,
+          pekerjaan: pekerjaan.value
+        };
+
+        localStorage.setItem('userData', JSON.stringify(userData));
+
+        // Redirect ke halaman login setelah pendaftaran berhasil
+        alert("Pendaftaran berhasil! Anda akan diarahkan ke halaman login.");
+        window.location.href = 'login.html';  // Ganti dengan halaman login yang sesuai
+      }
+
+      return isValid;
+    }
+  </script>
+</body>
+</html>
